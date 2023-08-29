@@ -1,4 +1,3 @@
-import { Timestamp } from "bson";
 import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     username: {
@@ -14,14 +13,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // tasks: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Task',
-    // }],
+    tasks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Task',
+    }],
 },   
 {timestamps:true}
 );
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User
