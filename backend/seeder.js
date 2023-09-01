@@ -1,8 +1,11 @@
-import mongoose from "mongoose";
 import usersData from './data/user.js'
 import tasksData from "./data/tasks.js";
+import collectionData from './data/collection.js';
+
 import Task from "./models/taskModel.js";
 import User from './models/userModel.js'
+import collection from './models/collectionModel.js'
+
 import dotenv from 'dotenv'
 import configDb from "./connectDb.js";
 
@@ -14,11 +17,11 @@ const insertData=async()=>{
     try {
         await User.deleteMany()
         await Task.deleteMany()
+        await collection.deleteMany()
 
         const userData=await User.insertMany(usersData)
-        console.log(userData)
         const taskData=await Task.insertMany(tasksData)
-        console.log(taskData)
+        const rescollectionData=await collection.insertMany(collectionData)
 
         console.log('data inserted successfully')
         process.exit(0)

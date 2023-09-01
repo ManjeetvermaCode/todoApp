@@ -1,9 +1,14 @@
 import bcrypt from 'bcrypt'
+import mongoose from 'mongoose'
+// import collection from './collection'
 const users=[
     {
         username:'Manjeet',
         email:'man@gmail.com',
-        password:bcrypt.hashSync('123456',10)
+        password:bcrypt.hashSync('123456',10),
+        collections:[
+           new mongoose.Types.ObjectId('64f19c9071f7519ff95c8b15')
+        ]
     },
     {
         username:'sarthak',
@@ -13,7 +18,11 @@ const users=[
     {
         username:'raju',
         email:'abcd@gmail.com',
-        password:bcrypt.hashSync('123456',10)
+        password:bcrypt.hashSync('123456',10),
+        collections:[
+            new mongoose.Types.ObjectId('64f19c9071f7519ff95c8b15')
+
+        ]
     },
 ]
 

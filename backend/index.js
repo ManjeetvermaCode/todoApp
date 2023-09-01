@@ -7,15 +7,10 @@ import dbConfig from './connectDb.js'
 import tasks from './models/taskModel.js'
 import users from './models/userModel.js'
 
+// app.use(cors())
 
 dotenv.config()
 dbConfig()
-// app.use(cors())
-// // app.use(express.static(path.join(__dirname, '/frontend/dist')));
-
-// app.get('*', (req, res) =>
-//   res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
-// );
 
 app.get('/api/',(req,res)=>{
     res.send('home page')
@@ -28,8 +23,14 @@ app.get('/api/tasks',async(req,res)=>{
 })
 
 app.get('/api/users',async(req,res)=>{
-    const allUsers=await users.find({}).populate('tasks')
+    const allUsers=await users.find({})
     res.status(200).json(allUsers)
+
+})
+app.get('/api/users/:id',async(req,res)=>{
+    const {id}=req.params
+    const user=await users.findById(id)
+    res.status(200).json(user)
 
 })
 
