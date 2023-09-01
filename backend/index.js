@@ -14,9 +14,13 @@ import collectionRoutes from './routes/collectionRoutes.js'
 dotenv.config()
 dbConfig()
 
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 app.get('/api/',(req,res)=>{
     res.send('home page')
 })
+
 
 
 app.use('/api/users',userRoutes)

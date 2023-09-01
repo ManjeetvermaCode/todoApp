@@ -5,6 +5,12 @@ export const allTasks=async(req,res)=>{
     res.status(200).json(todos)
 }
 
+export const createTask=async(req,res)=>{
+    const alldata=req.body
+    // const newTask=await tasks.insertMany(alldata)
+    
+}
+
 
 
 
