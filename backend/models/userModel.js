@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -13,9 +14,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    tasks: [{
+    collections: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task',
+        ref: 'Collection',
     }],
 },   
 {timestamps:true}

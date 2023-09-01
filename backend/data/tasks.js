@@ -10,7 +10,7 @@ const tasks=[
         dueDate:new Date('2023-07-31T23:30:00Z')
      },
      {
-        title:'kill yourself',
+        title:'kill a ant',
         description:'before 2075',
         dueDate:new Date('2073-05-31T23:30:00Z')//ask chatgpt to conver utc to ist
      },
