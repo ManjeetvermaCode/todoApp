@@ -4,8 +4,10 @@ import dotenv from 'dotenv'
 import dbConfig from './connectDb.js'
 // import cors from 'cors'
 
-import tasks from './models/taskModel.js'
-import users from './models/userModel.js'
+import userRoutes from './routes/userRoutes.js'
+import taskRoutes from './routes/taskRoutes.js'
+import collectionRoutes from './routes/collectionRoutes.js'
+
 
 // app.use(cors())
 
@@ -16,26 +18,10 @@ app.get('/api/',(req,res)=>{
     res.send('home page')
 })
 
-app.get('/api/tasks',async(req,res)=>{
-    const allTasks=await tasks.find({})
-    res.status(200).json(allTasks)
 
-})
-
-app.get('/api/users',async(req,res)=>{
-    const allUsers=await users.find({})
-    res.status(200).json(allUsers)
-
-})
-app.get('/api/users/:id',async(req,res)=>{
-    const {id}=req.params
-    const user=await users.findById(id)
-    res.status(200).json(user)
-
-})
-
-
-
+app.use('/api/users',userRoutes)
+app.use('/api/tasks',taskRoutes)
+app.use('/api/collections',collectionRoutes)
 
 app.listen(3000,()=>{
     console.log('hosted on port 3000')
