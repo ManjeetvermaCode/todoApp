@@ -7,7 +7,7 @@ const users=[
         email:'man@gmail.com',
         password:bcrypt.hashSync('123456',10),
         collections:[
-           new mongoose.Types.ObjectId('64f19c9071f7519ff95c8b15')
+           new mongoose.Types.ObjectId('64f1b85bf77da9a97f3f8a8e')
         ]
     },
     {
@@ -20,7 +20,7 @@ const users=[
         email:'abcd@gmail.com',
         password:bcrypt.hashSync('123456',10),
         collections:[
-            new mongoose.Types.ObjectId('64f19c9071f7519ff95c8b15')
+            new mongoose.Types.ObjectId('64f1b85bf77da9a97f3f8a8f')
 
         ]
     },
