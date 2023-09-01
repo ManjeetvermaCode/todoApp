@@ -16,12 +16,22 @@ configDb()
 const insertData=async()=>{
     try {
         await User.deleteMany()
-        await Task.deleteMany()
-        await collection.deleteMany()
+        // await Task.deleteMany()
+        // await collection.deleteMany()
 
         const userData=await User.insertMany(usersData)
-        const taskData=await Task.insertMany(tasksData)
-        const rescollectionData=await collection.insertMany(collectionData)
+        console.log(userData)
+
+        // const taskData=await Task.insertMany(tasksData)
+        // const rescollectionData=await collection.insertMany(collectionData)
+
+        // const taskIds = taskData.map(task => task._id);
+        // const collectionIds=rescollectionData.map(collection=>collection._id)
+        // console.log(rescollectionData)
+
+
+        // // await collection.updateMany({},{$set:{tasks:taskIds}})
+        // await User.updateMany({}, { $set: { collections: collectionIds } });
 
         console.log('data inserted successfully')
         process.exit(0)

@@ -6,7 +6,11 @@ export const allcollections=async(req,res)=>{
 }
 
 export const collectionById=async(req,res)=>{
-    const {id}=req.params
-    const collection=await collections.findById({id}).
+    try {
+        const {id}=req.params
+    const collection=await collections.findById(id).populate('tasks')
     res.status(200).json(collection)
+    } catch (error) {
+        console.log('error',error)
+    }
 }
