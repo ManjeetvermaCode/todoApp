@@ -1,4 +1,8 @@
+import NavBar from '../components/appBar.jsx';
+import {Box} from '@mui/material';
+
 import axios from 'axios'
+
 
 export default function HomeScreen() {
     try {
@@ -14,9 +18,25 @@ export default function HomeScreen() {
         console.log(error)
     }
 
+
+
+  
     return(
     <>
-        <h1>This is HomeScreen</h1>
+        <NavBar/>
+        <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh" // This ensures that the component takes the full height of the viewport
+    >
+
+      <Box width="40%" sx={{height:'100vh'}}>
+        <h2>Centered Component with 40% Width</h2>
+
+      </Box>
+
+    </Box>
     </>
     )
     
