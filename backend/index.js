@@ -2,14 +2,14 @@ import express from 'express'
 const app=express()
 import dotenv from 'dotenv'
 import dbConfig from './connectDb.js'
-// import cors from 'cors'
+import cors from 'cors'
 
 import userRoutes from './routes/userRoutes.js'
 import taskRoutes from './routes/taskRoutes.js'
 import collectionRoutes from './routes/collectionRoutes.js'
 
 
-// app.use(cors())
+app.use(cors())
 
 dotenv.config()
 dbConfig()
