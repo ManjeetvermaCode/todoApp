@@ -7,7 +7,7 @@ export const isUser=async(req,res,next)=>{
     if(token){
         try {
             const {UserId}=jwt.verify(token,process.env.JWT_SECRET)
-        req.user=await Users.findById(UserId).select('-password')   
+        req.user=await Users.findById(UserId).select('-password')  
         console.log(req.user) 
             next()   
         } catch (error) {

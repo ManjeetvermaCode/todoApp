@@ -7,7 +7,7 @@ import { useGetCollectionsQuery,useGetCollectionsByUserQuery } from '../slices/c
 export default function HomeScreen() {
 
       const {data,isloading,error}=useGetCollectionsByUserQuery('64f1b85bf77da9a97f3f8a8e')
-      console.log('collection-',data)
+      // console.log('collection-',data)
 
 
   

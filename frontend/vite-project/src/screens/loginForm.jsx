@@ -1,47 +1,74 @@
-import {Button, Dialog, DialogActions,TextField, DialogContent, DialogTitle, Stack, FormControlLabel, Checkbox, IconButton} from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
+import {Button, Dialog,TextField, DialogContent, DialogTitle, Stack, FormControlLabel, Checkbox, IconButton} from '@mui/material'
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import NavBar from '../components/appBar'
+import { useLoginMutation } from '../slices/login-slice';
+import { setCredentials } from '../slices/auth-slice';
+
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export default function LoginForm() {
-    
+    const [email,setemail]=useState('')
+    const [pass,setpass]=useState('')
+    const [check,setcheck]=useState(true)
+
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
+
+    const [login,{isloading,error}]=useLoginMutation()
+
+
+    // useEffect(()=>{
+    //   navigate('/')
+    // },[userId])
+    const handleSubmit=async(e)=>{
+      e.preventDefault()
+      try {
+        const response=await login({email,password:pass}).unwrap()
+        console.log('response -',response)
+        dispatch(setCredentials({response}))
+        navigate('/')
+
+      } catch (error) {
+        console.log(error.data)
+        
+      }
+    }
 
     return(
         <>
             <NavBar/>
+          
             <div style={{textAlign:'center'}}>
-        <h1>Mui-Diologue</h1>
-        <Button color='primary' variant='contained'>Open POPUP</Button>
-        <Dialog open={open}   fullWidth   >{/*additional properties- maxWidth='lg', fullScreen */}
-          <DialogTitle>User Registaration</DialogTitle>
-            <DialogContent>
-              <Stack spacing={2} margin={2}>
-                <TextField variant='outlined' label='Username'></TextField>
-                <TextField variant='outlined' label='Password'></TextField>
-                <TextField variant='outlined' label='Email'></TextField>
-                <FormControlLabel control={<Checkbox defaultChecked color='primary'></Checkbox>} label='agree to terma and condition'></FormControlLabel>
-                <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                <Link  fullWidth='true' to='/'>
-                  <Button  variant='contained' color='primary'>
-                    Back
-                  </Button>
-                </Link>
+        
+        <Dialog open fullWidth   >{/*additional properties- maxWidth='lg', fullScreen */}
+  <DialogTitle>User Registaration</DialogTitle>
+    <DialogContent>
+      <Stack spacing={2} margin={2}>
+        <form onSubmit={handleSubmit} style={{display:'flex',justifyContent:'space-between',flexDirection:'column'}}>
+        <TextField variant='outlined' label='Email' margin='normal' value={email} onChange={(e)=>setemail(e.target.value)} type='email' ></TextField>
 
-                
+        <TextField variant='outlined' label='Password' margin='normal' value={pass} onChange={(e)=>setpass(e.target.value)} type='password' ></TextField>
+        <FormControlLabel margin='normal'  control={<Checkbox value={check} onClick={()=>setcheck(!check)} defaultChecked color='primary'></Checkbox>} label='agree to terma and condition'></FormControlLabel>
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+        <Link  fullwidth='true' to='/'>
+          <Button  variant='contained' color='primary'>
+            Back
+          </Button>
+        </Link>
 
-                <Button color='primary' variant='contained' >Submit</Button>
-                </div>
+        
 
-              </Stack>
-             
-            </DialogContent>
-            <DialogActions>
-            {/* <Button color='success' variant='contained' onClick={closeModal}>Yes</Button>{/*onClick we can pass another function for some specific task */}
+        <Button type='submit' color='primary' variant='contained' >Submit</Button>
+        </div>
+        </form>
 
-              {/* <Button color='error' variant='contained' onClick={closeModal}>Close</Button>  */}
-            </DialogActions>
-        </Dialog>
-      </div>
+      </Stack>
+     
+    </DialogContent>
+    
+</Dialog>
+</div>
         </>
     )
 }
