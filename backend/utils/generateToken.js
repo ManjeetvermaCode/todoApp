@@ -7,5 +7,4 @@ export const generateToken=(res,UserId)=>{
     samesite:'none',
     maxAge:7*60*60*24*1000
   })
-
 }

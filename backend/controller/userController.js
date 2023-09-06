@@ -38,13 +38,14 @@ export const registerUser=async(req,res)=>{
 
 export const login=async(req,res)=>{
   const {email,password}=req.body
-  
   try {
     const user=await users.findOne({email})
     const pass=await bcypt.compare(password,user.password)
     if(pass){
       generateToken(res,user._id)
-      res.status(200).json('logged in successfully')
+      const onlyId=user._id
+      console.log(onlyId)
+      res.status(200).json(onlyId)
     }
     else{
       res.status(406).json('invalid credentials.')

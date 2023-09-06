@@ -6,13 +6,15 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+
+
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function ButtonAppBar() {
  
 
-
-
+const userInfo=useSelector((state)=>state.authUser)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -30,7 +32,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1,textAlign:'center',fontSize:'24px' }}>
             Your Task Mangement System
           </Typography>
-          <Link to='/login'><Button variant='contained' color="secondary" >Login</Button></Link> 
+          {userInfo.length===0?<Link><Button variant='contained' color='secondary'>logout</Button></Link>:<Link to='/login'><Button variant='contained' color="secondary" >Login</Button></Link>} 
         </Toolbar>
 
       </AppBar>
