@@ -1,6 +1,6 @@
 import users from "../models/userModel.js"
 import bcypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+import {generateToken} from "../utils/generateToken.js"
 
 export const allUsers=async(req,res)=>{
     const allUsers=await users.find({})
@@ -29,21 +29,38 @@ export const registerUser=async(req,res)=>{
   const hashpass=await bcypt.hash(password,10)
   const user= await users.create({username,password:hashpass,email})
 
-  const token=jwt.sign({UserId:user._id},process.env.JWT_SECRET,{expiresIn:'7d'})
-  res.cookie('Jwt',token,{
-    httpOnly:true,
-    secure:false,
-    samesite:'none',
-    maxAge:7*60*60*24*1000
-  })
+  generateToken(res,user._id)
 
   res.status(200).send({user})
 
 
 }
 
+export const login=async(req,res)=>{
+  const {email,password}=req.body
+  
+  try {
+    const user=await users.findOne({email})
+    const pass=await bcypt.compare(password,user.password)
+    if(pass){
+      generateToken(res,user._id)
+      res.status(200).json('logged in successfully')
+    }
+    else{
+      res.status(406).json('invalid credentials.')
+    }
+  } catch (error) {
+    res.status(401).json('something went wrong')
+  }
+}
 
-
+export const logout=async(req,res)=>{
+    res.cookie('Jwt','',{
+      httpOnly:true,
+      expiresIn:new Date(0)
+    })
+    res.status(200).json('logged out successfully')
+}
 
 // const hashPass=await bcypt.hash(password,10)
 //   console.log(hashPass)
