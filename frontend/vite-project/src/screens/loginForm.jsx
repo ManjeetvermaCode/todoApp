@@ -26,7 +26,7 @@ export default function LoginForm() {
       try {
         const response=await login({email,password:pass}).unwrap()
         console.log('response -',response)
-        dispatch(setCredentials({response}))
+        dispatch(setCredentials(response))
         navigate('/')
 
       } catch (error) {

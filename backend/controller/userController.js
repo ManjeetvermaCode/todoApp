@@ -43,7 +43,9 @@ export const login=async(req,res)=>{
     const pass=await bcypt.compare(password,user.password)
     if(pass){
       generateToken(res,user._id)
-      res.status(200).json(user._id)
+      const onlyId=user._id
+      console.log(onlyId)
+      res.status(200).json(onlyId)
     }
     else{
       res.status(406).json('invalid credentials.')
