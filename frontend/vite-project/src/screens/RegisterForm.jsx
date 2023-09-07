@@ -1,21 +1,22 @@
-import {Button, Dialog,TextField, DialogContent, DialogTitle,Stack, Typography} from '@mui/material'
+import {Button, Dialog,TextField, DialogContent, DialogTitle, Stack, Typography} from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../components/appBar'
-import { useLoginMutation } from '../slices/login-slice';
+import { useRegisterMutation } from '../slices/login-slice';
 import { setCredentials } from '../slices/auth-slice';
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const [email,setemail]=useState('')
     const [pass,setpass]=useState('')
-    // const [check,setcheck]=useState(true)
+    const [name,setname]=useState('')
+    const [check,setcheck]=useState(true)
 
     const dispatch=useDispatch()
     const navigate=useNavigate()
 
-    const [login,{isloading,error}]=useLoginMutation()
+    const [login,{isloading,error}]=useRegisterMutation()
 
 
     // useEffect(()=>{
@@ -24,7 +25,7 @@ export default function LoginForm() {
     const handleSubmit=async(e)=>{
       e.preventDefault()
       try {
-        const response=await login({email,password:pass}).unwrap()
+        const response=await login({email,password:pass,username:name}).unwrap()
         console.log(response)
         dispatch(setCredentials(response))
         navigate('/')
@@ -46,11 +47,15 @@ export default function LoginForm() {
     <DialogContent>
       <Stack spacing={2} margin={2}>
         <form onSubmit={handleSubmit} style={{display:'flex',justifyContent:'space-between',flexDirection:'column'}}>
+        <TextField variant='outlined' label='UserName' margin='normal' value={name} onChange={(e)=>setname(e.target.value)} type='text' ></TextField>
+
         <TextField variant='outlined' label='Email' margin='normal' value={email} onChange={(e)=>setemail(e.target.value)} type='email' ></TextField>
 
         <TextField variant='outlined' label='Password' margin='normal' value={pass} onChange={(e)=>setpass(e.target.value)} type='password' ></TextField>
+        <Typography>Already a User ? <Link to='/login'>Login</Link></Typography>
+
         {/* <FormControlLabel margin='normal'  control={<Checkbox value={check} onClick={()=>setcheck(!check)} defaultChecked color='primary'></Checkbox>} label='agree to terma and condition'></FormControlLabel> */}
-        <Typography>New User ? <Link to='/register'>Register</Link></Typography>
+        
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
         <Link  fullwidth='true' to='/'>
           <Button  variant='contained' color='primary'>

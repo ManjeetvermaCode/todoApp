@@ -31,7 +31,7 @@ export const registerUser=async(req,res)=>{
 
   generateToken(res,user._id)
 
-  res.status(200).send({user})
+  res.status(200).json(user._id)
 
 
 }
@@ -43,15 +43,13 @@ export const login=async(req,res)=>{
     const pass=await bcypt.compare(password,user.password)
     if(pass){
       generateToken(res,user._id)
-      const onlyId=user._id
-      console.log(onlyId)
-      res.status(200).json(onlyId)
+      res.status(200).json(user._id)
     }
     else{
-      res.status(406).json('invalid credentials.')
+      res.status(406).json('Unabled to generate token')
     }
   } catch (error) {
-    res.status(401).json('something went wrong')
+    res.status(401).json('invalid credentials.')
   }
 }
 
