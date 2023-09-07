@@ -1,5 +1,6 @@
 import baseApiSlice from './baseApiSlice'
-import { LOGIN_URL } from '../constants'
+import { LOGIN_URL,REGISTER_URL } from '../constants'
+
 
 
 export const LoginSlice=baseApiSlice.injectEndpoints({
@@ -12,10 +13,18 @@ export const LoginSlice=baseApiSlice.injectEndpoints({
             })
             
                 
+            }),
+
+        Register:builder.mutation({
+            query:(data)=>({
+                url:REGISTER_URL,
+                body:data,
+                method:'post'
             })
+        })
         })
     
 })
 
-export const {useLoginMutation}=LoginSlice
+export const {useLoginMutation,useRegisterMutation}=LoginSlice
     

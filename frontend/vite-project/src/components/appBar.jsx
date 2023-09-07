@@ -6,13 +6,16 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
+import { logout } from '../slices/auth-slice';
 
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 
 export default function ButtonAppBar() {
- 
+ const dispatch=useDispatch()
+  const logoutHandler=()=>{
+    dispatch(logout())
+  }
 
 const userInfo=useSelector((state)=>state.authUser)
 
@@ -32,7 +35,7 @@ const userInfo=useSelector((state)=>state.authUser)
           <Typography variant="h6" component="div" sx={{ flexGrow: 1,textAlign:'center',fontSize:'24px' }}>
             Your Task Mangement System
           </Typography>
-          {userInfo.length===0?<Link><Button variant='contained' color='secondary'>logout</Button></Link>:<Link to='/login'><Button variant='contained' color="secondary" >Login</Button></Link>} 
+          {userInfo.userInfo!=null?<Link><Button onClick={()=>logoutHandler()} variant='contained' color='secondary'>logout</Button></Link>:<Link to='/login'><Button variant='contained' color="secondary" >Login</Button></Link>} 
         </Toolbar>
 
       </AppBar>
