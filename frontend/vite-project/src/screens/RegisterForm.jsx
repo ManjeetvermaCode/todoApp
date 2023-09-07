@@ -11,7 +11,7 @@ export default function RegisterForm() {
     const [email,setemail]=useState('')
     const [pass,setpass]=useState('')
     const [name,setname]=useState('')
-    const [check,setcheck]=useState(true)
+    // const [check,setcheck]=useState(true)
 
     const dispatch=useDispatch()
     const navigate=useNavigate()
