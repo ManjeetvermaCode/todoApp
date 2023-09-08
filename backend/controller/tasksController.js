@@ -4,8 +4,13 @@ import asyncHandler from "../middlewares/asynchandler.js"
 
 export const allTasks=asyncHandler(
     async(req,res)=>{
-        const todos=await tasks.find({})
+        try {
+            const todos=await tasks.find({})
         res.status(200).json(todos)
+        } catch (error) {
+            res.status(404)
+            throw new Error('Tasks not found')
+        }
     }
 )
 

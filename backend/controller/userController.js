@@ -5,7 +5,7 @@ import {generateToken} from "../utils/generateToken.js"
 
 export const allUsers=asyncHandler(
   async(req,res)=>{
-    const allUsers=await users.find({})
+    const allUsers=await users.find({}).populate('tasks').populate('CreatedBy')
     res.status(200).json(allUsers)
 }
 )
@@ -14,12 +14,7 @@ export const User=asyncHandler(
   async(req,res)=>{
     try {
       const {id}=req.params
-    const user=await users.findById(id).populate('collections').populate({
-        path: 'collections',
-        populate: {
-          path: 'tasks',
-        },
-      })
+    const user=await users.findById(id).populate('tasks').populate('CreatedBy')
     res.status(200).json(user)
     } catch (error) {
       res.status(404)

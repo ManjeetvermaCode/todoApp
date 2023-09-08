@@ -3,16 +3,19 @@ const collection=[
     {
         title:'morning routine',
         description:'desc',
-        tasks:[
-           new mongoose.Types.ObjectId('64f19e6644de5ea0d7ead4ba')
-        ]
+        // CreatedBy: new mongoose.Types.ObjectId(),
+        // tasks:[
+        //    new mongoose.Types.ObjectId('64fb1600d26e543484356326')
+        // ]
     },
     {
         title:'afternoon routine',
-        tasks:[
-           new mongoose.Types.ObjectId('64f19e6644de5ea0d7ead4bb'),
-            new mongoose.Types.ObjectId('64f19e6644de5ea0d7ead4bc')
-        ]
+        // CreatedBy: new mongoose.Types.ObjectId('64fb1600d26e543484356322'),
+
+        // tasks:[
+        //    new mongoose.Types.ObjectId('64fb1600d26e543484356327'),
+        //     new mongoose.Types.ObjectId('64fb1600d26e543484356328')
+        // ]
 
         
     },
