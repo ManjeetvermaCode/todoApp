@@ -14,10 +14,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    collections: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Collection',
-    }],
 },   
 {timestamps:true}
 );

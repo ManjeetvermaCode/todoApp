@@ -8,6 +8,7 @@ const collectionSchema=new mongoose.Schema({
     description:{
         type:String,
     },
+    CreatedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
 })
 
