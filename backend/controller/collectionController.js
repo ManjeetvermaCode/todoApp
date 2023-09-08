@@ -1,6 +1,5 @@
 import collections from '../models/collectionModel.js'
 import asyncHandler from '../middlewares/asynchandler.js'
-import collection from '../models/collectionModel.js'
 import User from '../models/userModel.js'
 
 export const allcollections=asyncHandler(
@@ -25,6 +24,21 @@ export const collectionById=asyncHandler(
         } catch (error) {
             res.status(404)
            throw new Error('Collection Not Found') 
+        }
+    }
+)
+
+export const getCollectionByUserId=asyncHandler(
+    async(req,res)=>{
+        try{
+                const {id}=req.params
+                const allcollections=await collections.find({CreatedBy:id})
+                if(allcollections.length>0){
+                    res.status(200).json(allcollections)
+                }
+        }catch(err){
+            res.status(403)
+            throw new Error('Resource not found')
         }
     }
 )
