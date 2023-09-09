@@ -1,4 +1,4 @@
-import { COLLECTIONS_URL } from "../constants";
+import { COLLECTIONS_URL,POST_COLLECTION_URL } from "../constants";
 
 import baseApiSlice from "./baseApiSlice";
 
@@ -18,9 +18,21 @@ const collectionsApiSlice=baseApiSlice.injectEndpoints({
             }),
             keepUnusedDataFor:5,
         }),
+        GetCollectionsByUserId:builder.query({
+            query:(userId)=>({
+                url:`${COLLECTIONS_URL}/user/${userId}`
+            })
+        }),
+        PostCollection:builder.mutation({
+            query:(data)=>({
+                url:POST_COLLECTION_URL,
+                method:'POST',
+                body:data
+            })
+        })
         
     }),
     
 })
 
-export const {useGetCollectionsQuery,useGetCollectionsByUserQuery}=collectionsApiSlice;
+export const {useGetCollectionsQuery,useGetCollectionsByUserQuery,useGetCollectionsByUserIdQuery,usePostCollectionMutation}=collectionsApiSlice;

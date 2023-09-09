@@ -45,8 +45,16 @@ export const getCollectionByUserId=asyncHandler(
 
 export const createCollection=asyncHandler(
     async(req,res)=>{
-        // const {title,description}=req.body
-        // const Collection=new collection({title,description})
+        try {
+            const {title,description,UserId}=req.body
+        console.log(UserId)
+        const newCollection=new collections({title,description,CreatedBy:UserId})
+        const collection=await newCollection.save()
+        res.status(200).json(collection)
+        } catch (error) {
+            res.status(200)
+            throw new Error('Collection not saved')
+        }
         
     }
 )
