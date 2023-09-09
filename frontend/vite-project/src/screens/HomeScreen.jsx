@@ -45,18 +45,20 @@ export default function HomeScreen() {
         <>
             <NavBar/>
 
-                <body style={{display:'flex',flexDirection:'column',alignItems:'center',width:'70%',margin:'30px auto'}}>
+                <div style={{display:'flex',flexDirection:'column',alignItems:'center',width:'70%',margin:'30px auto'}}>
 
                     <Typography variant='h4' textAlign={'center'} m={2} >All Collections</Typography>
+                   { userId?<>
                     <form onSubmit={submithandler} style={{display:'flex',flexDirection:'column',}}>
                         <Typography sx={{marginTop:'8px'}}>Create New Collection</Typography>
-                        <TextField  id="outlined-basic" name='title' label="Title" variant="outlined" sx={{width:'550px',marginTop:'8px'}} onChange={changeHandler}/>
-                        <TextField id="outlined-basic" name='description' label="Description" variant="outlined" sx={{width:'550px',marginTop:'8px'}} onChange={changeHandler}/>
+                        <TextField  name='title' label="Title" variant="outlined" sx={{width:'550px',marginTop:'8px'}} onChange={changeHandler}/>
+                        <TextField name='description' label="Description" variant="outlined" sx={{width:'550px',marginTop:'8px'}} onChange={changeHandler}/>
                         <Button type='submit' sx={{marginTop:'8px'}} variant='contained'>Sumbit</Button>
                     </form>
+                    </>:''}
 
-                    {isloading?<div>loading....</div>:data?data.map((d)=>{return      <MultiActionAreaCard key={data._id} data={d}/>}):<div>No data available</div>}
-                </body>
+                    {isloading?<div>loading....</div>:data?data.map((d)=>{return      <MultiActionAreaCard key={d._id} data={d}/>}):<div>No Collections available</div>}
+                </div>
         </>
     )
     
