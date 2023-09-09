@@ -9,8 +9,8 @@ import {Link} from 'react-router-dom';
 export default function MultiActionAreaCard({data}) {
   return (
     <>
-        <Card sx={{ maxWidth: 545,margin:'25px auto' }}>
-            <Link style={{textDecoration:'none'}} >
+        <Card sx={{width:'550px',margin:'15px auto' }}>
+            <Link to='/' style={{textDecoration:'none'}} >
 
       <CardActionArea >
         <CardContent>

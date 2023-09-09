@@ -17,8 +17,7 @@ export const allTasks=asyncHandler(
 export const createTask=asyncHandler(
     async(req,res)=>{
         const alldata=req.body
-        // const newTask=await tasks.insertMany(alldata)
-        
+                
     }
 )
 
