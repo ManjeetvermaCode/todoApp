@@ -1,31 +1,29 @@
 import NavBar from '../components/appBar.jsx';
-import LoginForm from './loginForm.jsx';
-import {Box} from '@mui/material';
+import MultiActionAreaCard from '../components/collection.jsx';
 
-import { useGetCollectionsQuery,useGetCollectionsByUserQuery } from '../slices/collections-slice.js';
+import { Typography } from '@mui/material';
+
+import { useGetCollectionsByUserIdQuery} from '../slices/collections-slice.js';
+import { useSelector } from 'react-redux';
 
 export default function HomeScreen() {
-
-      const {data,isloading,error}=useGetCollectionsByUserQuery('64f1b85bf77da9a97f3f8a8e')
-      // console.log('collection-',data)
-
+      const userId=useSelector((state)=>state.authUser.userInfo)
+      console.log(userId)
+      const {data,isloading,error}=useGetCollectionsByUserIdQuery(userId)
+      // const newdata=data
+      // console.log(newdata)
+      
+    console.log(data)
 
   
     return(
     <>
         <NavBar/>
-        <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh" // This ensures that the component takes the full height of the viewport
-    >
+        <body>
+        <Typography variant='h4' textAlign={'center'} m={2} >All Collections</Typography>
 
-      <Box width="40%" sx={{height:'100vh',alignItems:'center'}}>
-        <h2>Centered Component with 40% Width</h2>
-      </Box>
-
-    </Box>
+{isloading?<div>loading....</div>:data?data.map((d)=>{return      <MultiActionAreaCard key={data._id} data={d}/>}):<div>No data available</div>}
+        </body>
     </>
     )
     

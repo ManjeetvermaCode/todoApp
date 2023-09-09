@@ -18,9 +18,14 @@ const collectionsApiSlice=baseApiSlice.injectEndpoints({
             }),
             keepUnusedDataFor:5,
         }),
+        GetCollectionsByUserId:builder.query({
+            query:(userId)=>({
+                url:`${COLLECTIONS_URL}/user/${userId}`
+            })
+        })
         
     }),
     
 })
 
-export const {useGetCollectionsQuery,useGetCollectionsByUserQuery}=collectionsApiSlice;
+export const {useGetCollectionsQuery,useGetCollectionsByUserQuery,useGetCollectionsByUserIdQuery}=collectionsApiSlice;
