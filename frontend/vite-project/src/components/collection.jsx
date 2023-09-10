@@ -10,7 +10,7 @@ export default function MultiActionAreaCard({data}) {
   return (
     <>
         <Card sx={{width:'550px',margin:'15px auto' }}>
-            <Link to='/' style={{textDecoration:'none'}} >
+            <Link to={`/collection/${data._id}`} style={{textDecoration:'none'}} >
 
       <CardActionArea >
         <CardContent>

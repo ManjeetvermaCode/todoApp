@@ -1,11 +1,10 @@
 import { useState } from 'react';
 
-import NavBar from '../components/appBar.jsx';
 import MultiActionAreaCard from '../components/collection.jsx';
 
 import { Typography,TextField,Button} from '@mui/material';
 
-import { useGetCollectionsByUserIdQuery,usePostCollectionMutation} from '../slices/collections-slice.js';
+import { useGetCollectionsByUserIdQuery,usePostCollectionMutation,useGetCollectionsByUserQuery} from '../slices/collections-slice.js';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +23,7 @@ export default function HomeScreen() {
       // const newdata=data
       // console.log(newdata)
       
-    // console.log(data)
+    console.log(data)
 
     //handlers for form
 
@@ -43,7 +42,6 @@ export default function HomeScreen() {
     }
     return(
         <>
-            <NavBar/>
 
                 <div style={{display:'flex',flexDirection:'column',alignItems:'center',width:'70%',margin:'30px auto'}}>
 
