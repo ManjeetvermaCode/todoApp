@@ -9,11 +9,14 @@ import store from './store.js'
 import HomeScreen from './screens/HomeScreen.jsx'
 import LoginForm from './screens/loginForm.jsx'
 import RegisterForm from './screens/RegisterForm.jsx'
+import TaskScreen from './screens/TaskScreen.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>} >
-      <Route index={true} path='/' element={<HomeScreen/>}/>
+      <Route path='/' index element={<HomeScreen/>}/>
+      <Route path='/collection/:id' element={<TaskScreen/>} />
+        
       <Route path='/login' element={<LoginForm/>}/>
       <Route path='/register' element={<RegisterForm/>}/>
 

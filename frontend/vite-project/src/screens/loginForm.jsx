@@ -1,6 +1,5 @@
 import {Button, Dialog,TextField, DialogContent, DialogTitle,Stack, Typography} from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom';
-import NavBar from '../components/appBar'
 import { useLoginMutation } from '../slices/login-slice';
 import { setCredentials } from '../slices/auth-slice';
 
@@ -37,7 +36,6 @@ export default function LoginForm() {
 
     return(
         <>
-            <NavBar/>
           
             <div style={{textAlign:'center'}}>
         
