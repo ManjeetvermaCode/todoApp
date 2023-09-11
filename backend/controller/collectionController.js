@@ -6,7 +6,7 @@ export const allcollections=asyncHandler(
     async(req,res)=>{
         try {
             const allcollections=await collections.find({}).populate('tasks')
-        res.status(200).json(allcollections)
+        res.status(200).json(allcollections.tasks)
         } catch (error) {
            res.status(404)
            throw new Error('Collections Not Found') 
@@ -19,8 +19,7 @@ export const collectionById=asyncHandler(
         try {
             const {id}=req.params
         const collection=await collections.findById(id).populate('tasks')
-        console.log(collection.CreatedBy)
-        res.status(200).json(collection)
+        res.status(200).json(collection.tasks)
         } catch (error) {
             res.status(404)
            throw new Error('Collection Not Found') 

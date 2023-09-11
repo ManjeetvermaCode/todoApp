@@ -23,7 +23,7 @@ const userInfo=useSelector((state)=>state.authUser)
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -31,7 +31,12 @@ const userInfo=useSelector((state)=>state.authUser)
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
+          <Link to='/' style={{textDecoration:'none'}}>
+
+          <Typography sx={{color:'white',fontSize:'28px',fontWeight:'bold'}}>Home</Typography>
+
+          </Link>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1,textAlign:'center',fontSize:'24px' }}>
             Your Task Mangement System
           </Typography>
