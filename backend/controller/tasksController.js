@@ -19,12 +19,13 @@ export const allTasks=asyncHandler(
 export const createTask=asyncHandler(
     async(req,res)=>{
         try {
-            console.log(req.body)
+            console.log(req.body.id)
             const {id,title,description,dueDate,priority}=req.body
-            // const newtask=await tasks.create({title,description,dueDate,priority})
+            const newtask=await tasks.create({title,description,dueDate,priority})
             const taskId=newtask._id
             const spec_collection=await collections.findByIdAndUpdate(id,{$push:{tasks:taskId}})
-            console.log(spec_collection)
+            // const spec_collection=await collections.findById({coll_id})
+            console.log('spec_coll',spec_collection)
         } catch (error) {
             res.status(304)
             throw new Error('unable to add task')
