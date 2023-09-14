@@ -10,19 +10,19 @@ import { useNavigate } from "react-router-dom";
 export default function TaskScreen() {
     const dispatch=useDispatch()
     const navigate=useNavigate()
+    const { id } = useParams();
 
-    const UserId=useSelector((state)=>state.authUser.userInfo)
+    // const UserId=useSelector((state)=>state.authUser.userInfo)
     const [open,setOpen]=useState(false)
 
     const [details,setdetails]=useState({
-        id:UserId,
+        id,
         title:'',
         description:'',
         dueDate:null,
         priority:'Medium',
         completed:false
     })
-    const { id } = useParams();
     const { data, isLoading, error } = useGetCollectionsByUserQuery(id);
     const [sendData,{}]=useAddTaskMutation()
 
@@ -53,7 +53,7 @@ export default function TaskScreen() {
         dispatch(sendData(details))
         setdetails({title:'',description:'',dueDate:null,priority:'',completed:false})
 
-        navigate(`/collections/${id}`)
+        navigate(`/collection/${id}`)
     }
 
     //dialog handlers
