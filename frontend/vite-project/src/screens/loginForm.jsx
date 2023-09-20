@@ -29,8 +29,9 @@ export default function LoginForm() {
         navigate('/')
 
       } catch (error) {
-        console.log(error.data)
-        
+        console.log('invalid pass',error.data)    
+        setemail('')
+        setpass('')    
       }
     }
 
@@ -48,6 +49,7 @@ export default function LoginForm() {
 
         <TextField variant='outlined' label='Password' margin='normal' value={pass} onChange={(e)=>setpass(e.target.value)} type='password' ></TextField>
         {/* <FormControlLabel margin='normal'  control={<Checkbox value={check} onClick={()=>setcheck(!check)} defaultChecked color='primary'></Checkbox>} label='agree to terma and condition'></FormControlLabel> */}
+        {error && <Typography color='error'>{error.data.message}</Typography>}
         <Typography>New User ? <Link to='/register'>Register</Link></Typography>
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
         <Link  fullwidth='true' to='/'>
