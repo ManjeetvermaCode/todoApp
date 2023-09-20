@@ -1,6 +1,6 @@
 // import '/../public/stylesheets/taskscreen.css'
 
-import {List, ListItem, ListItemButton, ListItemIcon, ListItemText,Checkbox} from '@mui/material'
+import {List, ListItem, ListItemIcon, ListItemText,Checkbox} from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 export default function Tasks({data}) {

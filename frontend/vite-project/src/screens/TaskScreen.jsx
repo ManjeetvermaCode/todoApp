@@ -48,12 +48,12 @@ export default function TaskScreen() {
         })
     }
     const SubmitHandler=(e)=>{
-        e.preventDefault()
+        // e.preventDefault()
         console.log(details)
         dispatch(sendData(details))
-        setdetails({title:'',description:'',dueDate:null,priority:'',completed:false})
+        // setdetails({title:'',description:'',dueDate:null,priority:'Medium'})
 
-        navigate(`/collection/${id}`)
+        navigate(`/`)
     }
 
     //dialog handlers
