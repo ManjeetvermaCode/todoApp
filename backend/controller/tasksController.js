@@ -1,7 +1,6 @@
 import tasks from "../models/taskModel.js"
 import asyncHandler from "../middlewares/asynchandler.js"
 import collections from "../models/collectionModel.js"
-import mongoose from "mongoose"
 
 
 export const allTasks=asyncHandler(
@@ -19,7 +18,6 @@ export const allTasks=asyncHandler(
 export const createTask=asyncHandler(
     async(req,res)=>{
         try {
-            console.log(req.body.id)
             const {id,title,description,dueDate,priority}=req.body
             const newtask=await tasks.create({title,description,dueDate,priority})
             const taskId=newtask._id
@@ -32,6 +30,18 @@ export const createTask=asyncHandler(
         }
        
        
+    }
+)
+
+export const toggleTaskStatus=asyncHandler(
+    async(req,res)=>{
+        const {id,checked}=req.body
+        console.log(id,checked)
+        // const task=await tasks.findById(id)
+        const task=await tasks.findByIdAndUpdate(id,{completed:(!checked)})
+        console.log(task)
+        res.send(task)
+
     }
 )
 

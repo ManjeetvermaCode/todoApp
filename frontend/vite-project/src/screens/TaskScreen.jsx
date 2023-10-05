@@ -4,7 +4,7 @@ import { useState } from "react";
 import Tasks from "../components/tasks";
 import { Button, FormGroup, TextField,FormControl,InputLabel,Select,MenuItem,Dialog,DialogContent,DialogActions} from "@mui/material";
 import {useAddTaskMutation} from '../slices/tasks-slice'
-import { useDispatch,useSelector } from "react-redux"; 
+import { useDispatch } from "react-redux"; 
 import { useNavigate } from "react-router-dom";
 
 export default function TaskScreen() {
