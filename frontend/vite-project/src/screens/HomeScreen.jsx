@@ -55,7 +55,7 @@ export default function HomeScreen() {
                     </form>
                     </>:''}
 
-                    {isloading?<div>loading....</div>:data?data.map((d)=>{return      <MultiActionAreaCard key={d._id} data={d}/>}):<div>No Collections available</div>}
+                    {isloading?<div>loading....</div>:data?data.map((d)=>{return <MultiActionAreaCard key={d._id} data={d}/>}):<div>No Collections available</div>}
                 </div>
         </>
     )

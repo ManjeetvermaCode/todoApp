@@ -1,33 +1,34 @@
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActionArea } from '@mui/material';
 import {Link} from 'react-router-dom';
 
 export default function MultiActionAreaCard({data}) {
   return (
     <>
         <Card sx={{width:'550px',margin:'15px auto' }}>
-            <Link to={`/collection/${data._id}`} style={{textDecoration:'none'}} >
 
-      <CardActionArea >
+      <CardActionArea sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}} >
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {data.title}
-          </Typography>
+          <Link to={`/collection/${data._id}`}>
+            <Typography gutterBottom variant="h5" component="div">
+              {data.title}
+            </Typography>
+          </Link>
           <Typography variant="body2" color="text.secondary">
             {data.description}
           </Typography>
         </CardContent>
-      </CardActionArea>
-      {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions> */}
+        <CardContent>
+          <Link to='/delete'>
+            <Button>Delete</Button>
+
           </Link>
+        </CardContent>
+        
+      </CardActionArea>
 
     </Card>
     </>
