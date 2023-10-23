@@ -36,12 +36,21 @@ export const createTask=asyncHandler(
 export const toggleTaskStatus=asyncHandler(
     async(req,res)=>{
         const {id,checked}=req.body
-        console.log(id,checked)
-        // const task=await tasks.findById(id)
         const task=await tasks.findByIdAndUpdate(id,{completed:(!checked)})
-        console.log(task)
         res.send(task)
 
+    }
+)
+
+export const deleteTask=asyncHandler(
+    async(req,res)=>{
+        // res.send('delete Method')
+        const {id}=req.body
+        console.log('the tasks id is - ',id)
+        // const deletedTask= await tasks.findByIdAndRemove({id})
+        // console.log(deleteTask)
+        const task=await tasks.findByIdAndDelete(id)
+        console.log(task)
     }
 )
 
