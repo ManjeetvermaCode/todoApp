@@ -1,5 +1,5 @@
 import baseApiSlice from "./baseApiSlice"
-import { CREATE_TASKS_URL,TOGGLE_TASK } from "../constants"
+import { CREATE_TASKS_URL,TOGGLE_TASK,DELETE_TASK } from "../constants"
 
 
 const TaskSlice=baseApiSlice.injectEndpoints({
@@ -17,8 +17,15 @@ const TaskSlice=baseApiSlice.injectEndpoints({
                 method:'post',
                 body:data
             })
+        }),
+        DeleteTask:builder.mutation({
+            query:(data)=>({
+                url:DELETE_TASK,
+                method:'post',
+                body:data
+            })
         })
     })
 })
 
-export const {useAddTaskMutation,useToggleTaskStatusMutation}=TaskSlice
+export const {useAddTaskMutation,useToggleTaskStatusMutation,useDeleteTaskMutation}=TaskSlice

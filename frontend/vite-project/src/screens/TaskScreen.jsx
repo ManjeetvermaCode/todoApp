@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetCollectionsByUserQuery } from '../slices/collections-slice';
 import { useState } from "react";
 import Tasks from "../components/tasks";
-import { Button, FormGroup, TextField,FormControl,InputLabel,Select,MenuItem,Dialog,DialogContent,DialogActions} from "@mui/material";
+import {Box, Button, FormGroup, TextField,FormControl,InputLabel,Select,MenuItem,Dialog,DialogContent,DialogActions} from "@mui/material";
 import {useAddTaskMutation} from '../slices/tasks-slice'
 import { useDispatch } from "react-redux"; 
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ export default function TaskScreen() {
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const { id } = useParams();
-
     // const UserId=useSelector((state)=>state.authUser.userInfo)
     const [open,setOpen]=useState(false)
 
@@ -25,6 +24,7 @@ export default function TaskScreen() {
     })
     const { data, isLoading, error } = useGetCollectionsByUserQuery(id);
     const [sendData,{}]=useAddTaskMutation()
+
 
     if (isLoading) {
         return <div>loading...</div>;
@@ -40,6 +40,7 @@ export default function TaskScreen() {
         )
     }
 
+
     //form Handlers
     const ChangeHandler=(e)=>{
         const {name,value}=e.target
@@ -48,10 +49,8 @@ export default function TaskScreen() {
         })
     }
     const SubmitHandler=(e)=>{
-        // e.preventDefault()
         console.log(details)
         dispatch(sendData(details))
-        // setdetails({title:'',description:'',dueDate:null,priority:'Medium'})
 
         navigate(`/`)
     }
@@ -65,8 +64,9 @@ export default function TaskScreen() {
         setOpen(false);
       };
 
-    //SubmitTaskHandler
-
+const refreshHandler=()=>{
+    window.location.reload()
+}
    
 
     return (
@@ -75,9 +75,17 @@ export default function TaskScreen() {
 
 
 <div>
-      <Button variant="contained" color="secondary"  sx={{width:'60%',margin:'20px 20%'}} onClick={handleClickOpen}>
+    <Box sx={{width:'60%',m:'20px auto',display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
+        <Button variant="contained" color="secondary" onClick={refreshHandler} >
+            Refresh
+        </Button>
+        <Button variant="contained" color="secondary"  onClick={handleClickOpen}>
         Click to add Task
       </Button>
+    </Box>
+      
+    
+     
     <Dialog
         open={open}
         onClose={handleClose}
@@ -117,10 +125,6 @@ export default function TaskScreen() {
 
         <div style={{width:'60%',margin:'20px auto'}}>
             {data.map((d) => (
-                // <div key={d.id}>
-                //     <h1>Task - {d.title}</h1>
-                //     <p>Description - {d.description}</p>
-                // </div>
                 <Tasks key={d._id} data={d}/>
             ))}
         </div>
