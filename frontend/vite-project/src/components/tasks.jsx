@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 
 import { useToggleTaskStatusMutation, useDeleteTaskMutation } from '../slices/tasks-slice';
 import { useDispatch } from 'react-redux';
-import { useNavigate,useLocation} from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 
-export default function Tasks({data}) {
+export default function Tasks({data,coll_id}) {
     const dispatch=useDispatch()
-    const navigate=useNavigate()
     const location=useLocation()
+
+    const redirectToUrl=`/collection/${coll_id}`
 
     const [sendBool,{}]=useToggleTaskStatusMutation()
     const [deleteReq,{}]=useDeleteTaskMutation()
@@ -24,15 +25,17 @@ export default function Tasks({data}) {
         dispatch(sendBool({id,checked}))
         
     }
+    console.log(data._id)
   
+    // useEffect(()=>{
 
+    // },[deleteHandler])
     const deleteHandler=()=>{
-        console.log('delete handler clicked', id)
-        navigate(location.pathname)
         dispatch(deleteReq({id}))
 
+        // history.push(`/collection/${id}`)
     }
-
+ 
     return (
        <div className='task'>
             <List sx={{border:'1px solid grey',margin:'20px auto',display:'flex',justifyContent:'space-between'}}>
@@ -44,7 +47,7 @@ export default function Tasks({data}) {
                   sx={{margin:'auto 12px'}}
                 />
                     <ListItemText primary={data.title}/>
-                    <Link to='/'>
+                    <Link to={redirectToUrl}>
                     <ListItemIcon onClick={deleteHandler}>
                         <DeleteIcon  />
                     </ListItemIcon>

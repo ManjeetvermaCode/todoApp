@@ -1,6 +1,7 @@
 import collections from '../models/collectionModel.js'
 import asyncHandler from '../middlewares/asynchandler.js'
 import User from '../models/userModel.js'
+import collection from '../models/collectionModel.js'
 
 export const allcollections=asyncHandler(
     async(req,res)=>{
@@ -55,5 +56,14 @@ export const createCollection=asyncHandler(
             throw new Error('Collection not saved')
         }
         
+    }
+)
+
+export const deleteCollection=asyncHandler(
+    async(req,res)=>{
+        const {id}=req.body
+        // const collection=await collection.findById(id)
+        // console.log(collection)
+        console.log(id)
     }
 )

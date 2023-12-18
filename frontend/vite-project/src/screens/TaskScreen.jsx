@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetCollectionsByUserQuery } from '../slices/collections-slice';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tasks from "../components/tasks";
 import {Box, Button, FormGroup, TextField,FormControl,InputLabel,Select,MenuItem,Dialog,DialogContent,DialogActions} from "@mui/material";
 import {useAddTaskMutation} from '../slices/tasks-slice'
@@ -13,6 +13,7 @@ export default function TaskScreen() {
     const { id } = useParams();
     // const UserId=useSelector((state)=>state.authUser.userInfo)
     const [open,setOpen]=useState(false)
+   
 
     const [details,setdetails]=useState({
         id,
@@ -39,7 +40,9 @@ export default function TaskScreen() {
             <h1>No Tasks apparently</h1>
         )
     }
+// useEffect(()=>{
 
+// },[details])
 
     //form Handlers
     const ChangeHandler=(e)=>{
@@ -49,9 +52,7 @@ export default function TaskScreen() {
         })
     }
     const SubmitHandler=(e)=>{
-        console.log(details)
         dispatch(sendData(details))
-
         navigate(`/`)
     }
 
@@ -68,7 +69,6 @@ const refreshHandler=()=>{
     window.location.reload()
 }
    
-
     return (
         <>
         
@@ -76,7 +76,7 @@ const refreshHandler=()=>{
 
 <div>
     <Box sx={{width:'60%',m:'20px auto',display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
-        <Button variant="contained" color="secondary" onClick={refreshHandler} >
+        <Button variant="contained" color="primary" onClick={refreshHandler} >
             Refresh
         </Button>
         <Button variant="contained" color="secondary"  onClick={handleClickOpen}>
@@ -125,7 +125,7 @@ const refreshHandler=()=>{
 
         <div style={{width:'60%',margin:'20px auto'}}>
             {data.map((d) => (
-                <Tasks key={d._id} data={d}/>
+                <Tasks key={d._id} data={d} coll_id={id}/>
             ))}
         </div>
         </>
