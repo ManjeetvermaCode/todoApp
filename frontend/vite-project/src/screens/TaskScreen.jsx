@@ -68,18 +68,14 @@ export default function TaskScreen() {
         setOpen(false);
       };
 
-const refreshHandler=()=>{
-    window.location.reload()
-}
+
    
     return (
         <>
 
 <div>
     <Box sx={{width:'60%',m:'20px auto',display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
-        <Button variant="contained" color="primary" onClick={refreshHandler} >
-            Refresh
-        </Button>
+       
         <Button variant="contained" color="secondary"  onClick={handleClickOpen}>
         Click to add Task
       </Button>
