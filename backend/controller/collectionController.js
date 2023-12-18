@@ -62,8 +62,7 @@ export const createCollection=asyncHandler(
 export const deleteCollection=asyncHandler(
     async(req,res)=>{
         const {id}=req.body
-        // const collection=await collection.findById(id)
-        // console.log(collection)
-        console.log(id)
+        const collection =await collections.findByIdAndDelete(id)
+        console.log('collection is deleted', collection)
     }
 )

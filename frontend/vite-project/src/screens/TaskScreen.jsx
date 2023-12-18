@@ -5,7 +5,7 @@ import Tasks from "../components/tasks";
 import {Box, Button, FormGroup, TextField,FormControl,InputLabel,Select,MenuItem,Dialog,DialogContent,DialogActions} from "@mui/material";
 import {useAddTaskMutation} from '../slices/tasks-slice'
 import { useDispatch } from "react-redux"; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 export default function TaskScreen() {
     const dispatch=useDispatch()
@@ -52,8 +52,11 @@ export default function TaskScreen() {
         })
     }
     const SubmitHandler=(e)=>{
-        dispatch(sendData(details))
-        navigate(`/`)
+        try{
+            dispatch(sendData(details))
+        }catch(e){
+            console.log('unable to send submit task data',e)
+        }
     }
 
     //dialog handlers
@@ -71,8 +74,6 @@ const refreshHandler=()=>{
    
     return (
         <>
-        
-
 
 <div>
     <Box sx={{width:'60%',m:'20px auto',display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
