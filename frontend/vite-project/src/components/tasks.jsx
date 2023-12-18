@@ -8,6 +8,8 @@ import { useToggleTaskStatusMutation, useDeleteTaskMutation } from '../slices/ta
 import { useDispatch } from 'react-redux';
 import { useLocation} from 'react-router-dom';
 
+import {toast} from 'react-toastify'
+
 export default function Tasks({data,coll_id}) {
     const dispatch=useDispatch()
     const location=useLocation()
@@ -32,6 +34,7 @@ export default function Tasks({data,coll_id}) {
     // },[deleteHandler])
     const deleteHandler=()=>{
         dispatch(deleteReq({id}))
+        toast.success('Successfully deleted the task, please click on refresh button to reflect changes.')
 
         // history.push(`/collection/${id}`)
     }
