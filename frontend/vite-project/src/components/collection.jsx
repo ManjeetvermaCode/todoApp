@@ -4,8 +4,21 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea } from '@mui/material';
 import {Link} from 'react-router-dom';
+import { useDeleteCollectionMutation } from '../slices/collections-slice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function MultiActionAreaCard({data}) {
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const [deleteColl,{}]=useDeleteCollectionMutation()
+  const id=data._id
+  const deleteCollection=()=>{
+    dispatch(deleteColl({id}))
+    navigate('/register')
+    
+  }
+
   return (
     <>
         <Card sx={{width:'550px',margin:'15px auto' }}>
@@ -22,10 +35,10 @@ export default function MultiActionAreaCard({data}) {
           </Typography>
         </CardContent>
         <CardContent>
-          <Link to='/delete'>
-            <Button>Delete</Button>
+          {/* <Link to='/delete'> */}
+            <Button onClick={deleteCollection}>Delete</Button>
 
-          </Link>
+          {/* </Link> */}
         </CardContent>
         
       </CardActionArea>

@@ -1,4 +1,4 @@
-import { COLLECTIONS_URL,POST_COLLECTION_URL } from "../constants";
+import { COLLECTIONS_URL,POST_COLLECTION_URL,DELETE_COLLECTION} from "../constants";
 
 import baseApiSlice from "./baseApiSlice";
 
@@ -29,10 +29,17 @@ const collectionsApiSlice=baseApiSlice.injectEndpoints({
                 method:'POST',
                 body:data
             })
+        }),
+        DeleteCollection:builder.mutation({
+            query:(data)=>({
+                url:DELETE_COLLECTION,
+                method:'POST',
+                body:data
+            })
         })
         
     }),
     
 })
 
-export const {useGetCollectionsQuery,useGetCollectionsByUserQuery,useGetCollectionsByUserIdQuery,usePostCollectionMutation}=collectionsApiSlice;
+export const {useGetCollectionsQuery,useGetCollectionsByUserQuery,useGetCollectionsByUserIdQuery,usePostCollectionMutation,useDeleteCollectionMutation}=collectionsApiSlice;
