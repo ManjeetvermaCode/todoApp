@@ -17,6 +17,9 @@ export default function ButtonAppBar() {
     dispatch(logout())
   }
 
+ const refreshHandler=()=>{
+      window.location.reload()
+  }
 const userInfo=useSelector((state)=>state.authUser)
 
   return (
@@ -40,6 +43,7 @@ const userInfo=useSelector((state)=>state.authUser)
           <Typography variant="h6" component="div" sx={{ flexGrow: 1,textAlign:'center',fontSize:'24px' }}>
             Your Task Mangement System
           </Typography>
+          <Button variant='contained' sx={{m:3}} color='secondary' onClick={refreshHandler}>Click to Refresh</Button>
           {userInfo.userInfo!=null?<Link><Button onClick={()=>logoutHandler()} variant='contained' color='secondary'>logout</Button></Link>:<Link to='/login'><Button variant='contained' color="secondary" >Login</Button></Link>} 
         </Toolbar>
 
